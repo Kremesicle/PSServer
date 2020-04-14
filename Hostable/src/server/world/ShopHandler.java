@@ -136,12 +136,14 @@ public class ShopHandler {
 				ShopName[ShopID] =  AllShopIDS.get(i).ShopName;
 				ShopSModifier[ShopID] = AllShopIDS.get(i).Sell;
 				ShopBModifier[ShopID] = AllShopIDS.get(i).Buy;;
-				for (int ii = 0; ii < ShopItemLinkIDs.size() + 1; ii++) {
+				int k = 0;
+				for (int ii = 0; ii < ShopItemLinkIDs.size(); ii++) {
 					if (ShopID == ShopItemLinkIDs.get(ii).ShopId) {
-						ShopItems[ShopID][ii] = ((4 + (ShopItemLinkIDs.get(ii).Amount * 2)) + 1);
-						ShopItemsN[ShopID][ii] = (5 + (ShopItemLinkIDs.get(ii).Amount * 2));
-						ShopItemsSN[ShopID][ii] = (5 + (ShopItemLinkIDs.get(ii).Amount* 2));
+						ShopItems[ShopID][k] = ShopItemLinkIDs.get(ii).ItemId +1;
+						ShopItemsN[ShopID][k] = ShopItemLinkIDs.get(ii).Amount;
+						ShopItemsSN[ShopID][k] = ShopItemLinkIDs.get(ii).Amount;
 						ShopItemsStandard[ShopID]++;
+						k++;
 					}
 				}
 				TotalShops++;

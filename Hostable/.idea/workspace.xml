@@ -3,55 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="213c3cb1-7f66-4ef5-9f98-407c25274c1e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler.bat" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/cfg/item.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/Data/cfg/item.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/cfg/shops.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/Data/cfg/shops.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/cfg/spawn-config.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/Data/cfg/spawn-config.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/characters/Kremesicle.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Data/characters/Kremesicle.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/characters/Scrubbag.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Data/characters/Scrubbag.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Effect 317.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Effect 317.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/cfg/item.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cfg/item.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/cfg/shops.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cfg/shops.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/cfg/spawn-config.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/bin/cfg/spawn-config.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/characters/Kremesicle.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/characters/Kremesicle.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/characters/Scrubbag.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/characters/Scrubbag.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/model/players/ActionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/model/players/ActionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/model/players/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/model/players/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/model/players/CombatAssistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/model/players/CombatAssistant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/model/players/PlayerAssistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/model/players/PlayerAssistant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/model/players/packets/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/model/players/packets/Commands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/world/ShopHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/world/ShopHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>master</find>
-      <find>debug</find>
-      <find>getPA</find>
-      <find>6598</find>
-      <find>c.getPA().showInterface</find>
-      <find>writestring</find>
-      <find>use the</find>
-      <find>text</find>
-      <find>welcome to rune</find>
-      <find>torso</find>
-      <find>characters</find>
-      <find>registered</find>
-      <find>getpa</find>
-      <find>taste</find>
-      <find>message</find>
-      <find>sailor</find>
-      <find>spawn-con</find>
-      <find>Makeover Mage</find>
-      <find>599</find>
-      <find>teleport</find>
-      <find>talk-to</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -125,52 +86,49 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="666" y="261" key="FileChooserDialogImpl/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586810586957" />
-    <state width="1921" height="281" key="GridCell.Tab.0.bottom" timestamp="1586878405323">
+    <state width="1921" height="347" key="GridCell.Tab.0.bottom" timestamp="1586897604306">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="281" key="GridCell.Tab.0.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586878405323" />
-    <state width="1921" height="281" key="GridCell.Tab.0.center" timestamp="1586878405323">
+    <state width="1921" height="347" key="GridCell.Tab.0.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586897604306" />
+    <state width="1921" height="347" key="GridCell.Tab.0.center" timestamp="1586897604305">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="281" key="GridCell.Tab.0.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586878405323" />
-    <state width="1921" height="281" key="GridCell.Tab.0.left" timestamp="1586878405323">
+    <state width="1921" height="347" key="GridCell.Tab.0.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586897604305" />
+    <state width="1921" height="347" key="GridCell.Tab.0.left" timestamp="1586897604305">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="281" key="GridCell.Tab.0.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586878405323" />
-    <state width="1921" height="281" key="GridCell.Tab.0.right" timestamp="1586878405323">
+    <state width="1921" height="347" key="GridCell.Tab.0.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586897604305" />
+    <state width="1921" height="347" key="GridCell.Tab.0.right" timestamp="1586897604305">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="281" key="GridCell.Tab.0.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586878405323" />
-    <state width="1921" height="347" key="GridCell.Tab.1.bottom" timestamp="1586827521324">
+    <state width="1921" height="347" key="GridCell.Tab.0.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586897604305" />
+    <state width="1921" height="347" key="GridCell.Tab.1.bottom" timestamp="1586897604306">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="347" key="GridCell.Tab.1.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586827521324" />
-    <state width="1921" height="347" key="GridCell.Tab.1.center" timestamp="1586827521324">
+    <state width="1921" height="347" key="GridCell.Tab.1.bottom/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586897604306" />
+    <state width="1921" height="347" key="GridCell.Tab.1.center" timestamp="1586897604306">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="347" key="GridCell.Tab.1.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586827521324" />
-    <state width="1921" height="347" key="GridCell.Tab.1.left" timestamp="1586827521324">
+    <state width="1921" height="347" key="GridCell.Tab.1.center/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586897604306" />
+    <state width="1921" height="347" key="GridCell.Tab.1.left" timestamp="1586897604306">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="347" key="GridCell.Tab.1.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586827521324" />
-    <state width="1921" height="347" key="GridCell.Tab.1.right" timestamp="1586827521324">
+    <state width="1921" height="347" key="GridCell.Tab.1.left/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586897604306" />
+    <state width="1921" height="347" key="GridCell.Tab.1.right" timestamp="1586897604306">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1921" height="347" key="GridCell.Tab.1.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586827521324" />
+    <state width="1921" height="347" key="GridCell.Tab.1.right/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586897604306" />
     <state x="440" y="94" key="SettingsEditor" timestamp="1586810592378">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="440" y="94" key="SettingsEditor/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586810592378" />
+    <state x="667" y="255" width="585" height="530" key="find.popup" timestamp="1586897689987">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="255" width="585" height="530" key="find.popup/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586897689987" />
     <state x="342" y="140" key="new project wizard" timestamp="1586705911271">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="140" key="new project wizard/1920.0.1920.1040/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1586705911271" />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="lol" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
