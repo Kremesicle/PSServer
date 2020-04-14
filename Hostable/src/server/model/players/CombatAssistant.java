@@ -1137,7 +1137,7 @@ public class CombatAssistant{
 		if (damage <= 0)
 			return;
 		Player o = PlayerHandler.players[otherPlayer];
-		o.forcedText = "Taste vengeance!";
+		o.forcedText = "Taste spaghetti!";
 		o.forcedChatUpdateRequired = true;
 		o.updateRequired = true;
 		o.vengOn = false;

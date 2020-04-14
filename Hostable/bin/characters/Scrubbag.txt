@@ -5,7 +5,7 @@ character-password = 102116119
 [CHARACTER]
 character-height = 0
 character-posx = 3094
-character-posy = 3489
+character-posy = 3490
 character-rights = 0
 crystal-bow-shots = 0
 skull-timer = 0
@@ -26,7 +26,7 @@ taskAmount = 0
 magePoints = 0
 autoRet = 0
 barrowskillcount = 0
-flagged = false
+flagged = true
 wave = 0
 gwkc = 0
 fightMode = 0
@@ -94,6 +94,7 @@ character-skill = 23	1	0
 character-skill = 24	1	0
 
 [ITEMS]
+character-item = 0	996	200
 
 [BANK]
 character-bank = 0	996	2147000000

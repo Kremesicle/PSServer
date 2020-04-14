@@ -1049,6 +1049,9 @@ public class ActionHandler {
 		c.clickNpcType = 0;
 		c.npcClickIndex = 0;
 		switch(npcType) {
+			case 201:
+				c.getShops().openShop(4);
+				break;
 			case 1304:
 				c.getDH().sendDialogues(23, npcType);
 			break;
@@ -1135,7 +1138,7 @@ public class ActionHandler {
 					c.getDH().sendDialogues(13,npcType);
 				}
 			break;
-			case 461:
+			case 0:
 				c.getShops().openShop(2);
 			break;
 			

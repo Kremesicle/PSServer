@@ -7,6 +7,7 @@ import server.model.players.Client;
 import server.model.players.PacketType;
 import server.model.players.PlayerHandler;
 import server.util.Misc;
+import server.world.ShopHandler;
 
 
 /**
@@ -35,7 +36,10 @@ public class Commands implements PacketType {
 		if(c.playerRights >= 0) {
 
 			if(playerCommand.equalsIgnoreCase("commands")){
-				c.getPA().showInterface(6960);
+				c.showStringMessage("lol");
+			}
+			if(playerCommand.equalsIgnoreCase("vengme")){
+				c.getPA().vengMeNoRunesNoCD();
 			}
 			if (playerCommand.equalsIgnoreCase("players")) {
 				c.sendMessage("There are currently "+PlayerHandler.getPlayerCount()+ " players online.");
@@ -142,22 +146,16 @@ public class Commands implements PacketType {
 					c.getPA().movePlayer(Integer.parseInt(arg[1]),Integer.parseInt(arg[2]),c.heightLevel);
 			}
 			
-			if (playerCommand.equalsIgnoreCase("mypos")) {
+			if (playerCommand.equalsIgnoreCase("p")) {
 				c.sendMessage("X: "+c.absX);
 				c.sendMessage("Y: "+c.absY);
 			}
-			
-			
-		
-		
-		
 
-			
 			/*if (playerCommand.startsWith("task")) {
 				c.taskAmount = -1;
 				c.slayerTask = 0;
 			}
-			
+
 			if (playerCommand.startsWith("starter")) {
 				c.getDH().sendDialogues(100, 945);			
 			}*/
@@ -172,7 +170,7 @@ public class Commands implements PacketType {
 			}
 
 			if (playerCommand.startsWith("reloadshops")) {
-				Server.shopHandler = new server.world.ShopHandler();
+				Server.shopHandler = new ShopHandler();
 			}
 			
 			if (playerCommand.startsWith("fakels")) {
