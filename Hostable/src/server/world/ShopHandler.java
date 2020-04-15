@@ -108,7 +108,6 @@ public class ShopHandler {
 	public boolean loadShops(String FileName) {
 		List<ShopIDName> AllShopIDS = new ArrayList<ShopIDName>();
 		List<ShopItemIDs> ShopItemLinkIDs = new ArrayList<ShopItemIDs>();
-		BufferedReader characterfile = null;
     	String connectionUrl = "jdbc:sqlserver://localhost:1433;instanceName=DESKTOP-92GJDD3;databaseName=RunescapeServer;";
 			try (Connection con = DriverManager.getConnection(connectionUrl, "Kremesicle", "lol"); CallableStatement stmt = con.prepareCall("{call GetShopData()}");) {
 				ResultSet rs = stmt.executeQuery();
@@ -162,20 +161,6 @@ this.ShopId = shopid;
 this.ItemId = itemid;
 this.Amount = amount;
 	}
-
-	public int getShopID() {
-		return ShopId;
-	}
-	public void setShopID(int shopid) {
-		ShopId = shopid;
-	}
-	public int getItemID() {
-		return ItemId;
-	}
-	public void setItemID(int itemid) {
-		ItemId = itemid;
-	}
-
 }
 class ShopIDName{
 	public int ShopId;

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.File;
+import java.sql.*;
 import java.util.Scanner;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -330,62 +331,91 @@ public class ItemHandler {
 	}
 	
 	public boolean loadItemList(String FileName) {
-		String line = "";
-		String token = "";
-		String token2 = "";
-		String token2_2 = "";
-		String[] token3 = new String[10];
-		boolean EndOfFile = false;
-		int ReadMode = 0;
-		BufferedReader characterfile = null;
-		try {
-			characterfile = new BufferedReader(new FileReader("./Data/cfg/"+FileName));
-		} catch(FileNotFoundException fileex) {
-			Misc.println(FileName+": file not found.");
-			return false;
-		}
-		try {
-			line = characterfile.readLine();
-		} catch(IOException ioexception) {
-			Misc.println(FileName+": error loading file.");
-			return false;
-		}
-		while(EndOfFile == false && line != null) {
-			line = line.trim();
-			int spot = line.indexOf("=");
-			if (spot > -1) {
-				token = line.substring(0, spot);
-				token = token.trim();
-				token2 = line.substring(spot + 1);
-				token2 = token2.trim();
-				token2_2 = token2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token3 = token2_2.split("\t");
-				if (token.equals("item")) {
-					int[] Bonuses = new int[12];
-					for (int i = 0; i < 12; i++) {
-						if (token3[(6 + i)] != null) {
-							Bonuses[i] = Integer.parseInt(token3[(6 + i)]);
-						} else {
-							break;
-						}
+		List<ItemListInfo> AllItems = new ArrayList<ItemListInfo>();
+		String connectionUrl = "jdbc:sqlserver://localhost:1433;instanceName=DESKTOP-92GJDD3;databaseName=RunescapeServer;";
+		try (Connection con = DriverManager.getConnection(connectionUrl, "Kremesicle", "lol"); CallableStatement stmt = con.prepareCall("SELECT * FROM ItemList");) {
+
+			ResultSet rs = stmt.executeQuery();
+					while(rs.next()){
+						ItemListInfo item = new ItemListInfo(rs.getInt("ItemID"), rs.getString("ItemName"), rs.getString("ItemDescription"), rs.getInt("LowAlch"),
+								rs.getInt("HighAlch"), rs.getInt("ShopCost"), rs.getInt("AtkStabBonus"), rs.getInt("AtkSlashBonus"), rs.getInt("AtkCrushBonus"), rs.getInt("AtkMagicBonus"),
+								rs.getInt("AtkRangingBonus"), rs.getInt("DefStabBonus"), rs.getInt("DefSlashBonus"), rs.getInt("DefCrushBonus"), rs.getInt("DefMagicBonus"),
+								rs.getInt("DefRangingBonus"), rs.getInt("StrengthBonus"), rs.getInt("PrayerBonus"));
+						AllItems.add(item);
 					}
-					newItemList(Integer.parseInt(token3[0]), token3[1].replaceAll("_", " "), token3[2].replaceAll("_", " "), Double.parseDouble(token3[4]), Double.parseDouble(token3[4]), Double.parseDouble(token3[6]), Bonuses);
-				}
-			} else {
-				if (line.equals("[ENDOFITEMLIST]")) {
-					try { characterfile.close(); } catch(IOException ioexception) { }
-					return true;
-				}
-			}
-			try {
-				line = characterfile.readLine();
-			} catch(IOException ioexception1) { EndOfFile = true; }
+					for (int k = 0; k < AllItems.size(); k++){
+					int[] Bonuses = new int[12];
+					    Bonuses[0] = AllItems.get(k).AtkStabBonus;
+						Bonuses[1] = AllItems.get(k).AtkSlashBonus;
+						Bonuses[2] = AllItems.get(k).AtkCrushBonus;
+						Bonuses[3] = AllItems.get(k).AtkMagicBonus;
+						Bonuses[4] = AllItems.get(k).AtkRangingBonus;
+						Bonuses[5] = AllItems.get(k).DefStabBonus;
+						Bonuses[6] = AllItems.get(k).DefSlashBonus;
+						Bonuses[7] = AllItems.get(k).DefCrushBonus;
+						Bonuses[8] = AllItems.get(k).DefMagicBonus;
+						Bonuses[9] = AllItems.get(k).DefRangingBonus;
+						Bonuses[10] = AllItems.get(k).StrengthBonus;
+						Bonuses[11] = AllItems.get(k).PrayerBonus;
+
+
+					newItemList(AllItems.get(k).ItemID, AllItems.get(k).ItemName.replaceAll("_", " "), AllItems.get(k).ItemDescription.replaceAll("_", " "),
+							AllItems.get(k).ShopCost, AllItems.get(k).LowAlch, AllItems.get(k).HighAlch, Bonuses);
+					}
+
 		}
-		try { characterfile.close(); } catch(IOException ioexception) { }
-		return false;
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }
+class ItemListInfo
+{
+	public int ItemID;
+    public String ItemName;
+    public String ItemDescription;
+    public int LowAlch;
+    public int HighAlch;
+    public int ShopCost;
+    public int AtkStabBonus;
+    public int AtkCrushBonus;
+    public int AtkMagicBonus;
+    public int AtkRangingBonus;
+    public int AtkSlashBonus;
+    public int DefStabBonus;
+    public int DefSlashBonus;
+    public int DefCrushBonus;
+    public int DefMagicBonus;
+    public int DefRangingBonus;
+    public int StrengthBonus;
+    public int PrayerBonus;
+
+    public ItemListInfo(int itemId, String itemName, String itemDescription, int lowAlch, int highAlch, int shopCost, int atkStabBonus, int atkSlashBonus, int atkCrushBonus, int atkMagicBonus, int atkRangingBonus, int defStabBonus, int defSlashBonus,
+						int defCrushBonus, int defMagicBonus, int defRangingBonus, int strengthBonus, int prayerBonus){
+    	this.ItemID = itemId;
+    	this.ItemName = itemName;
+    	this.ItemDescription = itemDescription;
+    	this.LowAlch = lowAlch;
+    	this.HighAlch = highAlch;
+    	this.ShopCost = shopCost;
+    	this.AtkStabBonus = atkStabBonus;
+    	this.AtkSlashBonus = atkSlashBonus;
+    	this.AtkCrushBonus = atkCrushBonus;
+    	this.AtkMagicBonus = atkMagicBonus;
+    	this.AtkRangingBonus = atkRangingBonus;
+    	this.DefStabBonus = defStabBonus;
+    	this.DefSlashBonus = defSlashBonus;
+    	this.DefCrushBonus = defCrushBonus;
+    	this.DefMagicBonus = defMagicBonus;
+    	this.DefRangingBonus = defRangingBonus;
+    	this.StrengthBonus = strengthBonus;
+    	this.PrayerBonus = prayerBonus;
+
+
+	}
+
+
+}
+

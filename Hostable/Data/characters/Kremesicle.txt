@@ -4,8 +4,8 @@ character-password = 108111108
 
 [CHARACTER]
 character-height = 0
-character-posx = 3084
-character-posy = 3492
+character-posx = 3092
+character-posy = 3501
 character-rights = 2
 crystal-bow-shots = 0
 skull-timer = 0
@@ -16,7 +16,7 @@ brother-info = 2	0
 brother-info = 3	0
 brother-info = 4	0
 brother-info = 5	0
-special-amount = 10.0
+special-amount = 5.5
 selected-coffin = 0
 barrows-killcount = 0
 teleblock-length = 0
@@ -29,7 +29,7 @@ barrowskillcount = 0
 flagged = false
 wave = 0
 gwkc = 0
-fightMode = 0
+fightMode = 2
 void = 0	0	0	0	0
 tradeTimer = 0
 pkPoints = 0
@@ -39,7 +39,7 @@ memberStatus = 0
 character-equip = 0	-1	1	
 character-equip = 1	-1	1	
 character-equip = 2	-1	1	
-character-equip = 3	-1	0	
+character-equip = 3	11694	1	
 character-equip = 4	-1	1	
 character-equip = 5	-1	1	
 character-equip = 6	-1	0	
@@ -94,6 +94,7 @@ character-skill = 23	1	0
 character-skill = 24	1	0
 
 [ITEMS]
+character-item = 0	996	2134950000
 
 [BANK]
 character-bank = 0	996	20000000
