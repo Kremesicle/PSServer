@@ -3,10 +3,14 @@ package server.model.players.packets;
 import server.Config;
 import server.Connection;
 import server.Server;
+import server.model.npcs.NPC;
+import server.model.npcs.NPCDrops;
+import server.model.npcs.NPCHandler;
 import server.model.players.Client;
 import server.model.players.PacketType;
 import server.model.players.PlayerHandler;
 import server.util.Misc;
+import server.world.ItemHandler;
 import server.world.ShopHandler;
 
 
@@ -171,7 +175,13 @@ public class Commands implements PacketType {
 
 			if (playerCommand.startsWith("reloadshops")) {
 				Server.shopHandler = new ShopHandler();
+				Server.itemHandler = new ItemHandler();
 			}
+				if (playerCommand.startsWith("reloadDrops")) {
+					NPCDrops drops = new NPCDrops();
+					drops.loadDrops();
+
+				}
 			
 			if (playerCommand.startsWith("fakels")) {
 				int item = Integer.parseInt(playerCommand.split(" ")[1]);

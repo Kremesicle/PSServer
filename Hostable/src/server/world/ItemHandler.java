@@ -32,8 +32,7 @@ public class ItemHandler {
 		for(int i = 0; i < Config.ITEM_LIMIT; i++) {
 			ItemList[i] = null;
 		}
-		loadItemList("item.cfg");
-		loadItemPrices("prices.txt");
+		loadItemList();
 	}
 	
 	/**
@@ -159,10 +158,6 @@ public class ItemHandler {
 		if(itemId > 0) {
 			if (itemId >= 2412 && itemId <= 2414) {
 				c.sendMessage("The item vanishes as it touches the ground.");
-				return;
-			}
-			if (itemId == 995) {
-				c.sendMessage("Your coins dissappear.");
 				return;
 			}
 			if (itemId > 4705 && itemId < 4760) {
@@ -305,20 +300,6 @@ public class ItemHandler {
 		ItemList[slot] = newItemList;
 	}
 	
-	public void loadItemPrices(String filename) {
-		try {
-			Scanner s = new Scanner(new File("./data/cfg/" + filename));
-			while (s.hasNextLine()) {
-				String[] line = s.nextLine().split(" ");
-				ItemList temp = getItemList(Integer.parseInt(line[0]));
-				if (temp != null)
-					temp.ShopValue = Integer.parseInt(line[1]);			
-			}		
-		} catch (IOException e) {
-			e.printStackTrace();		
-		}
-	}
-	
 	public ItemList getItemList(int i) {
 		for (int j = 0; j < ItemList.length; j++) {
 			if (ItemList[j] != null) {
@@ -330,7 +311,7 @@ public class ItemHandler {
 		return null;
 	}
 	
-	public boolean loadItemList(String FileName) {
+	public boolean loadItemList() {
 		List<ItemListInfo> AllItems = new ArrayList<ItemListInfo>();
 		String connectionUrl = "jdbc:sqlserver://localhost:1433;instanceName=DESKTOP-92GJDD3;databaseName=RunescapeServer;";
 		try (Connection con = DriverManager.getConnection(connectionUrl, "Kremesicle", "lol"); CallableStatement stmt = con.prepareCall("SELECT * FROM ItemList");) {
