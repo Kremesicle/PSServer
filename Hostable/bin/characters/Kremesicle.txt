@@ -5,7 +5,7 @@ character-password = 108111108
 [CHARACTER]
 character-height = 0
 character-posx = 3086
-character-posy = 3490
+character-posy = 3493
 character-rights = 2
 crystal-bow-shots = 0
 skull-timer = 0
@@ -39,7 +39,7 @@ memberStatus = 0
 character-equip = 0	-1	1	
 character-equip = 1	-1	1	
 character-equip = 2	-1	1	
-character-equip = 3	10484	1	
+character-equip = 3	-1	0	
 character-equip = 4	-1	1	
 character-equip = 5	-1	1	
 character-equip = 6	-1	0	
@@ -69,7 +69,7 @@ character-look = 12	0
 [SKILLS]
 character-skill = 0	99	13034436
 character-skill = 1	99	13034436
-character-skill = 2	99	13034436
+character-skill = 2	3	179
 character-skill = 3	99	13034436
 character-skill = 4	99	13034436
 character-skill = 5	34	13034636
@@ -96,6 +96,7 @@ character-skill = 24	1	0
 [ITEMS]
 character-item = 0	11695	1
 character-item = 1	996	2147000000
+character-item = 2	10485	1
 
 [BANK]
 character-bank = 0	996	20000000
