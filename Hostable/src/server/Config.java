@@ -5,7 +5,7 @@ public class Config {
 	public static final boolean SERVER_DEBUG = false;// needs to be false for
 														// Real world to work
 
-	public static final String SERVER_NAME = "lol";
+	public static final String SERVER_NAME = "Rusty";
 	public static final String WELCOME_MESSAGE = "None";
 	public static final String FORUMS = "Unavailable";
 
@@ -77,7 +77,7 @@ public class Config {
 	public static final int DUELING_RESPAWN_Y = 3263;
 	public static final int RANDOM_DUELING_RESPAWN = 5; // random coords
 
-	public static final int NO_TELEPORT_WILD_LEVEL = 20; // level you can't tele
+	public static final int NO_TELEPORT_WILD_LEVEL = 99; // level you can't tele
 															// on and above
 	public static final int SKULL_TIMER = 1200; // how long does the skull last?
 												// seconds x 2

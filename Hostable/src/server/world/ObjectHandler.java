@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ObjectHandler {
 	
 	public List<Objects> globalObjects = new ArrayList<Objects>();	
 	public ObjectHandler() { 
-		loadGlobalObjects("./Data/cfg/global-objects.cfg");
+		loadGlobalObjects();
 		loadDoorConfig("./Data/cfg/doors.cfg");
 	}
 	
@@ -142,57 +143,21 @@ public class ObjectHandler {
 		}*/
 	}
 
-	public boolean loadGlobalObjects(String fileName) {
-		String line = "";
-		String token = "";
-		String token2 = "";
-		String token2_2 = "";
-		String[] token3 = new String[10];
-		boolean EndOfFile = false;
-		int ReadMode = 0;
-		BufferedReader objectFile = null;
-		try {
-			objectFile = new BufferedReader(new FileReader("./"+fileName));
-		} catch(FileNotFoundException fileex) {
-			Misc.println(fileName+": file not found.");
-			return false;
-		}
-		try {
-			line = objectFile.readLine();
-		} catch(IOException ioexception) {
-			Misc.println(fileName+": error loading file.");
-			return false;
-		}
-		while(EndOfFile == false && line != null) {
-			line = line.trim();
-			int spot = line.indexOf("=");
-			if (spot > -1) {
-				token = line.substring(0, spot);
-				token = token.trim();
-				token2 = line.substring(spot + 1);
-				token2 = token2.trim();
-				token2_2 = token2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token3 = token2_2.split("\t");
-				if (token.equals("object")) {					
-					Objects object = new Objects(Integer.parseInt(token3[0]), Integer.parseInt(token3[1]), Integer.parseInt(token3[2]), Integer.parseInt(token3[3]), Integer.parseInt(token3[4]), Integer.parseInt(token3[5]), 0);
-					addObject(object);
-				}
-			} else {
-				if (line.equals("[ENDOFOBJECTLIST]")) {
-					try { objectFile.close(); } catch(IOException ioexception) { }
-					return true;
-				}
+	public boolean loadGlobalObjects() {
+		String connectionUrl = "jdbc:sqlserver://localhost:1433;instanceName=DESKTOP-92GJDD3;databaseName=RunescapeServer;";
+		try (Connection con = DriverManager.getConnection(connectionUrl, "Kremesicle", "lol"); CallableStatement stmt = con.prepareCall("SELECT * FROM GlobalObjects");) {
+
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				Objects object = new Objects(rs.getInt("ObjectID"), rs.getInt("XCoord"), rs.getInt("YCoord"), rs.getInt("Height"),
+						rs.getInt("Face"), rs.getInt("ObjectType"),0);
+				addObject(object);
 			}
-			try {
-				line = objectFile.readLine();
-			} catch(IOException ioexception1) { EndOfFile = true; }
 		}
-		try { objectFile.close(); } catch(IOException ioexception) { }
-		return false;
+		catch(SQLException e){
+			return false;
+		}
+			return true;
 	}
 	
 	
@@ -246,61 +211,23 @@ public class ObjectHandler {
 	}
 		
 	public boolean loadDoorConfig(String fileName) {
-		String line = "";
-		String token = "";
-		String token2 = "";
-		String token2_2 = "";
-		String[] token3 = new String[10];
-		boolean EndOfFile = false;
-		int ReadMode = 0;
-		BufferedReader objectFile = null;
-		try {
-			objectFile = new BufferedReader(new FileReader("./"+fileName));
-		} catch(FileNotFoundException fileex) {
-			Misc.println(fileName+": file not found.");
-			return false;
-		}
-		try {
-			line = objectFile.readLine();
-		} catch(IOException ioexception) {
-			Misc.println(fileName+": error loading file.");
-			return false;
-		}
-		int door = 0;
-		while(EndOfFile == false && line != null) {
-			line = line.trim();
-			int spot = line.indexOf("=");
-			if (spot > -1) {
-				token = line.substring(0, spot);
-				token = token.trim();
-				token2 = line.substring(spot + 1);
-				token2 = token2.trim();
-				token2_2 = token2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token3 = token2_2.split("\t");
-				if (token.equals("door")) {					
-					doors[door][0] = Integer.parseInt(token3[0]);
-					doors[door][1] = Integer.parseInt(token3[1]);
-					doors[door][2] = Integer.parseInt(token3[2]);
-					doors[door][3] = Integer.parseInt(token3[3]);
-					doors[door][4] = Integer.parseInt(token3[4]);
-					door++;
-				}
-			} else {
-				if (line.equals("[ENDOFDOORLIST]")) {
-					try { objectFile.close(); } catch(IOException ioexception) { }
-					return true;
-				}
+		String connectionUrl = "jdbc:sqlserver://localhost:1433;instanceName=DESKTOP-92GJDD3;databaseName=RunescapeServer;";
+		try (Connection con = DriverManager.getConnection(connectionUrl, "Kremesicle", "lol"); CallableStatement stmt = con.prepareCall("SELECT * FROM Doors");) {
+			ResultSet rs = stmt.executeQuery();
+			int door = 0;
+			while(rs.next()){
+				doors[door][0] = rs.getInt("DoorX");
+				doors[door][1] = rs.getInt("DoorY");
+				doors[door][2] = rs.getInt("Height");
+				doors[door][3] = rs.getInt("Face");
+				doors[door][4] = rs.getInt("State");
+				door++;
 			}
-			try {
-				line = objectFile.readLine();
-			} catch(IOException ioexception1) { EndOfFile = true; }
 		}
-		try { objectFile.close(); } catch(IOException ioexception) { }
-		return false;
+		catch(SQLException e){
+			return false;
+		}
+		return true;
 	}
 	
 	public final int IN_USE_ID = 14825;

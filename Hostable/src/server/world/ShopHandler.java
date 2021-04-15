@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import server.Config;
 import server.Server;
@@ -16,7 +19,7 @@ import server.util.Misc;
 
 public class ShopHandler {
 
-	public static int MaxShops = 101; 
+	public static int MaxShops = 101;
 	public static int MaxShopItems = 101;
 	public static int MaxInShopItems = 20;
 	public static int MaxShowDelay = 10;
@@ -30,14 +33,14 @@ public class ShopHandler {
 	public static String[] ShopName = new String[MaxShops];
 	public static int[] ShopSModifier = new int[MaxShops];
 	public static int[] ShopBModifier = new int[MaxShops];
-	
+
 	public ShopHandler() {
 		for(int i = 0; i < MaxShops; i++) {
 			for(int j = 0; j < MaxShopItems; j++) {
 				ResetItem(i, j);
 				ShopItemsSN[i][j] = 0;
 			}
-			ShopItemsStandard[i] = 0; 
+			ShopItemsStandard[i] = 0;
 			ShopSModifier[i] = 0;
 			ShopBModifier[i] = 0;
 			ShopName[i] = "";
@@ -49,7 +52,7 @@ public class ShopHandler {
 	public static void shophandler() {
 	Misc.println("Shop Handler class successfully loaded");
 	}
-	
+
 	public void process() {
 		boolean DidUpdate = false;
 		for(int i = 1; i <= TotalShops; i++) {
@@ -95,7 +98,7 @@ public class ShopHandler {
 			ResetItem(ShopID, ArrayID);
 		}
 	}
-	
+
 	public void ResetItem(int ShopID, int ArrayID) {
 		ShopItems[ShopID][ArrayID] = 0;
 		ShopItemsN[ShopID][ArrayID] = 0;
@@ -103,68 +106,72 @@ public class ShopHandler {
 	}
 
 	public boolean loadShops(String FileName) {
-		String line = "";
-		String token = "";
-		String token2 = "";
-		String token2_2 = "";
-		String[] token3 = new String[(MaxShopItems * 2)];
-		boolean EndOfFile = false;
-		int ReadMode = 0;
-		BufferedReader characterfile = null;
-		try {
-			characterfile = new BufferedReader(new FileReader("./Data/CFG/"+FileName));
-		} catch(FileNotFoundException fileex) {
-			Misc.println(FileName+": file not found.");
-			return false;
-		}
-		try {
-			line = characterfile.readLine();
-		} catch(IOException ioexception) {
-			Misc.println(FileName+": error loading file.");
-			return false;
-		}
-		while(EndOfFile == false && line != null) {
-			line = line.trim();
-			int spot = line.indexOf("=");
-			if (spot > -1) {
-				token = line.substring(0, spot);
-				token = token.trim();
-				token2 = line.substring(spot + 1);
-				token2 = token2.trim();
-				token2_2 = token2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token2_2 = token2_2.replaceAll("\t\t", "\t");
-				token3 = token2_2.split("\t");
-				if (token.equals("shop")) {
-					int ShopID = Integer.parseInt(token3[0]);
-					ShopName[ShopID] = token3[1].replaceAll("_", " ");
-					ShopSModifier[ShopID] = Integer.parseInt(token3[2]);
-					ShopBModifier[ShopID] = Integer.parseInt(token3[3]);
-					for (int i = 0; i < ((token3.length - 4) / 2); i++) {
-						if (token3[(4 + (i * 2))] != null) {
-							ShopItems[ShopID][i] = (Integer.parseInt(token3[(4 + (i * 2))]) + 1);
-							ShopItemsN[ShopID][i] = Integer.parseInt(token3[(5 + (i * 2))]);
-							ShopItemsSN[ShopID][i] = Integer.parseInt(token3[(5 + (i * 2))]);
-							ShopItemsStandard[ShopID]++;
-						} else {
-							break;
-						}
-					}
-					TotalShops++;
+		List<ShopIDName> AllShopIDS = new ArrayList<ShopIDName>();
+		List<ShopItemIDs> ShopItemLinkIDs = new ArrayList<ShopItemIDs>();
+    	String connectionUrl = "jdbc:sqlserver://localhost:1433;instanceName=DESKTOP-92GJDD3;databaseName=RunescapeServer;";
+			try (Connection con = DriverManager.getConnection(connectionUrl, "Kremesicle", "lol"); CallableStatement stmt = con.prepareCall("{call GetShopData()}");) {
+				ResultSet rs = stmt.executeQuery();
+
+
+				// Iterate through the data in the result set and display it.
+				while (rs.next()) {
+					ShopIDName idname = new ShopIDName(rs.getInt("StoreID"), rs.getString("StoreName"), rs.getInt("Sell"), rs.getInt("Buy"));
+					AllShopIDS.add(idname);
 				}
-			} else {
-				if (line.equals("[ENDOFSHOPLIST]")) {
-					try { characterfile.close(); } catch(IOException ioexception) { }
-					return true;
+				stmt.getMoreResults();
+				ResultSet rs2 = stmt.getResultSet();
+				while (rs2.next()){
+					ShopItemIDs shop =  new ShopItemIDs(rs2.getInt("StoreID"), rs2.getInt("ItemID"), rs2.getInt("Amount"));
+					ShopItemLinkIDs.add(shop);
 				}
-			}
-			try {
-				line = characterfile.readLine();
-			} catch(IOException ioexception1) { EndOfFile = true; }
-		}
-		try { characterfile.close(); } catch(IOException ioexception) { }
-		return false;
 	}
+			// Handle any errors that may have occurred.
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			for(int i = 0; i < AllShopIDS.size(); i++){
+				int ShopID = AllShopIDS.get(i).ShopId;
+				ShopName[ShopID] =  AllShopIDS.get(i).ShopName;
+				ShopSModifier[ShopID] = AllShopIDS.get(i).Sell;
+				ShopBModifier[ShopID] = AllShopIDS.get(i).Buy;;
+				int k = 0;
+				for (int ii = 0; ii < ShopItemLinkIDs.size(); ii++) {
+					if (ShopID == ShopItemLinkIDs.get(ii).ShopId) {
+						ShopItems[ShopID][k] = ShopItemLinkIDs.get(ii).ItemId +1;
+						ShopItemsN[ShopID][k] = ShopItemLinkIDs.get(ii).Amount;
+						ShopItemsSN[ShopID][k] = ShopItemLinkIDs.get(ii).Amount;
+						ShopItemsStandard[ShopID]++;
+						k++;
+					}
+				}
+				TotalShops++;
+			}
+
+return true;
+
+	}
+}
+class ShopItemIDs{
+	public int ShopId;
+	public int ItemId;
+	public int Amount;
+	public ShopItemIDs(int shopid, int itemid, int amount){
+this.ShopId = shopid;
+this.ItemId = itemid;
+this.Amount = amount;
+	}
+}
+class ShopIDName{
+	public int ShopId;
+	public String ShopName;
+	public int Sell;
+	public int Buy;
+	public ShopIDName(int shopid, String shopName, int sell, int buy){
+		this.ShopId = shopid;
+		this.ShopName = shopName;
+		this.Sell = sell;
+		this.Buy = 	buy;
+	}
+
 }

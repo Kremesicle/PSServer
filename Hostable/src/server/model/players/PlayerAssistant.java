@@ -339,6 +339,7 @@ public class PlayerAssistant{
         	c.outStream.endFrameVarSizeWord();
     	}
 
+
 	public void walkableInterface(int id) {
 		synchronized(c) {
 			if(c.getOutStream() != null && c != null) {
@@ -864,6 +865,12 @@ public class PlayerAssistant{
 		} else {
 			c.sendMessage("You must wait 30 seconds before casting this again.");
 		}
+	}
+	public void vengMeNoRunesNoCD() {
+				c.vengOn = true;
+				c.lastVeng = System.currentTimeMillis();
+				c.startAnimation(4410);
+				c.gfx100(657);
 	}
 	
 	public void resetTb() {

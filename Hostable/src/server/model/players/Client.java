@@ -94,6 +94,10 @@ public class Client extends Player {
 		sendMessage("Congratulations, You Have Completed Treasure Trails");
 		deleteItem(clueID,GetItemSlot(clueID),1);*/
 	}
+	public void showStringMessage(String message)
+	{
+		sendMessage(message);
+	}
 	
 	public Client(IoSession s, int _playerId) {
 		super(_playerId);
